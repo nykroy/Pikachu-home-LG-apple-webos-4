@@ -1,0 +1,17 @@
+{
+  "id": "com.pikachu.apple",
+  "version": "0.1.0",
+  "vendor": "nykroy",
+  "type": "web",
+  "main": "index.html",
+  "title": "Pikachu Home",
+  "appDescription": "Pikachu Home · Apple TV edition — launcher para LG webOS 4",
+  "icon": "icon.png",
+  "largeIcon": "icon.png",
+  "iconColor": "#000000",
+  "bgColor": "#000000",
+  "resolution": "1920x1080",
+  "disableBackHistoryAPI": true,
+  "transparent": false,
+  "requiredMemory": 20
+}

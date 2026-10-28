@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Pikachu Home</title>
+<meta name="viewport" content="width=1920, initial-scale=1">
+<link rel="stylesheet" href="css/apple.css">
+</head>
+<body>
+
+  <!-- fondo: foto (Unsplash) + lavado de color ambiental -->
+  <div id="wallpaper"></div>
+  <div id="ambientA" class="ambient"></div>
+  <div id="ambientB" class="ambient"></div>
+
+  <!-- cabecera: saludo, reloj/fecha y pills -->
+  <header id="topbar">
+    <div class="top-left">
+      <div id="greeting">Pikachu Home</div>
+      <div class="time-row">
+        <span id="reloj">--:--</span>
+        <span class="sep">·</span>
+        <span id="fecha">—</span>
+      </div>
+    </div>
+    <div class="pills" id="pills">
+      <button class="pill" id="btnInputs" type="button">▣ Inputs</button>
+      <button class="pill" id="btnSettings" type="button">⚙ Ajustes</button>
+      <button class="pill" id="btnOrganizar" type="button">✎ Organizar</button>
+    </div>
+  </header>
+
+  <!-- top shelf: destacado -->
+  <section id="hero">
+    <div id="heroArt"></div>
+    <div id="heroInfo">
+      <p id="heroKicker">Destacado</p>
+      <h1 id="heroTitle">—</h1>
+      <p id="heroSub">—</p>
+    </div>
+  </section>
+
+  <!-- dock (favoritos) + grid (apps y entradas) -->
+  <div id="viewport">
+    <div id="dock" class="dock"></div>
+    <div id="grid" class="grid"></div>
+  </div>
+
+  <!-- barra de organización (transaccional) -->
+  <div class="editbar" id="editbar" hidden>
+    <span class="editbar-txt" id="editbarTxt">Moviendo</span>
+    <button class="btn-acc" data-acc="mover-izq" type="button">◀ Mover</button>
+    <button class="btn-acc" data-acc="mover-der" type="button">Mover ▶</button>
+    <button class="btn-acc" data-acc="favorito" type="button">★ Favorito</button>
+    <button class="btn-acc" data-acc="ocultar" type="button">Ocultar</button>
+    <button class="btn-acc" data-acc="ocultas" type="button">Ocultas</button>
+    <button class="btn-acc" data-acc="restaurar" type="button">Restaurar</button>
+    <button class="btn-acc ok" data-acc="listo" type="button">✓ Listo</button>
+    <button class="btn-acc" data-acc="cancelar" type="button">✗ Cancelar</button>
+  </div>
+
+  <!-- panel de ajustes -->
+  <div class="panel" id="panel" hidden>
+    <div class="panel-card">
+      <h3 id="panelTitulo">Ajustes</h3>
+      <button class="btn-panel-cerrar" id="btnSalir" type="button">Cerrar ✕</button>
+      <ul class="opciones" id="opciones"></ul>
+      <p class="panel-pie">«Cerrar» para volver</p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="js/webOSTV.js"></script>
+  <script src="js/installed.js"></script>
+  <script src="js/cache.js"></script>
+  <script src="js/ssap.js"></script>
+  <script src="js/catalog.js"></script>
+  <script src="js/prefs.js"></script>
+  <script src="js/providers.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/launcher.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/focus.js"></script>
+  <script src="js/txn.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+# Datos privados: inventario de apps del usuario + iconos de catálogo
+**/catalogo*.json
+**/assets/catalogo/
+
+# Python
+**/__pycache__/
+*.pyc
+.DS_Store

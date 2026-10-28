@@ -1,0 +1,204 @@
+/* apple.css — Pikachu Home · Apple TV edition
+   Look tvOS 26: dock Liquid Glass, Top Shelf con lavado de color, iconos 5:3 que se elevan al enfocar,
+   tipografía Inter, fotos de fondo. Compatible webOS 4.4.3 / Chromium 53:
+   sin CSS Grid, sin flex gap, sin inset, sin backdrop-filter, sin fuentes variables. */
+
+@font-face { font-family: 'Inter TV'; src: url('../fonts/inter-400.ttf') format('truetype'); font-weight: 400; }
+@font-face { font-family: 'Inter TV'; src: url('../fonts/inter-500.ttf') format('truetype'); font-weight: 500; }
+@font-face { font-family: 'Inter TV'; src: url('../fonts/inter-600.ttf') format('truetype'); font-weight: 600; }
+@font-face { font-family: 'Inter TV'; src: url('../fonts/inter-700.ttf') format('truetype'); font-weight: 700; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 1920px; height: 1080px; overflow: hidden;
+  background: #000; color: #fff;
+  font-family: 'Inter TV', 'Outfit', -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body { position: relative; }
+
+/* ---------- fondo: foto + lavado ambiental ---------- */
+#wallpaper {
+  position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+  background: #000 center / cover no-repeat;
+  opacity: 0.0;
+  transition: opacity 800ms ease;
+}
+body.has-wallpaper #wallpaper { opacity: 1; }
+
+.ambient {
+  position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+  background: radial-gradient(120% 90% at 50% 100%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 100%);
+  transition: opacity 700ms ease;
+  pointer-events: none;
+}
+#ambientB { opacity: 0; }
+
+/* ---------- cabecera ---------- */
+#topbar {
+  position: absolute; top: 0; left: 0; right: 0;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  padding: 44px 64px 0 64px;
+  z-index: 10;
+}
+#greeting { font-size: 30px; font-weight: 600; color: rgba(255,255,255,0.95); }
+.time-row { margin-top: 6px; font-size: 24px; font-weight: 500; color: rgba(255,255,255,0.65); }
+.time-row .sep { margin: 0 10px; opacity: 0.5; }
+
+.pills { display: flex; }
+.pill {
+  display: flex; align-items: center;
+  margin-left: 14px; padding: 12px 22px;
+  font-size: 22px; font-weight: 500; color: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 18px;
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease;
+}
+.pill.foco { background: rgba(255,255,255,0.22); transform: scale(1.04); }
+
+/* ---------- top shelf (hero) ---------- */
+#hero {
+  position: absolute; top: 190px; left: 64px; right: 64px;
+  display: flex; align-items: flex-end;
+  height: 300px;
+  z-index: 6;
+}
+#heroArt {
+  position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+  background: center / cover no-repeat;
+  border-radius: 22px;
+  opacity: 0.9;
+  mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+}
+#heroInfo { position: relative; padding: 0 8px 8px 8px; }
+#heroKicker { font-size: 22px; font-weight: 600; color: rgba(255,255,255,0.6); letter-spacing: 0.06em; }
+#heroTitle {
+  font-size: 96px; font-weight: 700; letter-spacing: -0.03em;
+  text-shadow: 0 6px 40px rgba(0,0,0,0.5);
+}
+#heroSub { margin-top: 8px; font-size: 28px; font-weight: 400; color: rgba(255,255,255,0.75); }
+
+/* ---------- viewport (dock + grid) ---------- */
+#viewport { position: absolute; top: 560px; bottom: 0; left: 0; right: 0; z-index: 5; }
+
+/* dock: favoritos, centrado abajo */
+.dock {
+  display: flex; justify-content: center; align-items: flex-end;
+  padding: 0 64px 40px 64px;
+}
+.dock .card { margin: 0 16px; }
+
+/* grid: apps + entradas */
+.grid {
+  display: flex; flex-wrap: wrap; justify-content: center; align-content: flex-start;
+  padding: 8px 64px 0 64px;
+}
+.grid .card { margin: 12px 14px; }
+
+/* ---------- tarjetas (5:3, glass, elevación al enfocar) ---------- */
+.card {
+  position: relative;
+  width: 300px; height: 180px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+  overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  cursor: pointer;
+}
+.card .icono { font-size: 56px; line-height: 1; }
+.card .logo { max-width: 120px; max-height: 80px; }
+.card .nombre {
+  margin-top: 10px; font-size: 19px; font-weight: 500; color: rgba(255,255,255,0.95);
+  max-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.card.foco {
+  transform: scale(1.10);
+  background: rgba(255,255,255,0.16);
+  box-shadow: 0 0 0 3px #fff, 0 18px 50px rgba(0,0,0,0.6);
+  z-index: 8;
+}
+
+/* dock: tarjetas mayores */
+.dock .card { width: 360px; height: 216px; }
+.dock .card .nombre { font-size: 21px; }
+
+/* tarjeta seleccionada en modo Organizar */
+.card.sel { box-shadow: 0 0 0 3px #4f9cf9, 0 18px 50px rgba(0,0,0,0.6); }
+.card.cogida { border-style: dashed; border-color: #4f9cf9; }
+
+/* ---------- barra de organización ---------- */
+.editbar {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 18px 40px;
+  background: rgba(0,0,0,0.88);
+  z-index: 20;
+}
+.editbar-txt { font-size: 22px; font-weight: 500; margin-right: 26px; color: rgba(255,255,255,0.9); }
+.btn-acc {
+  margin: 0 8px; padding: 14px 20px;
+  font-size: 20px; font-weight: 500; color: #fff;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 14px;
+  cursor: pointer;
+}
+.btn-acc.ok { background: rgba(79,156,249,0.9); border-color: rgba(79,156,249,1); }
+.btn-acc.foco { background: rgba(255,255,255,0.28); transform: scale(1.05); }
+
+/* ---------- panel de ajustes ---------- */
+.panel {
+  position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.55);
+  z-index: 30;
+}
+.panel-card {
+  width: 820px; max-height: 760px;
+  padding: 40px;
+  background: #14181d;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.10);
+  display: flex; flex-direction: column;
+}
+.panel-card h3 { font-size: 34px; font-weight: 700; margin-bottom: 6px; }
+.btn-panel-cerrar {
+  align-self: flex-end; margin-top: -46px;
+  font-size: 20px; padding: 10px 18px; color: #fff;
+  background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.14); border-radius: 12px; cursor: pointer;
+}
+.opciones { list-style: none; overflow-y: auto; margin-top: 12px; }
+.opciones li {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 18px; margin: 6px 0;
+  font-size: 24px; font-weight: 500;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; cursor: pointer;
+}
+.opciones li.foco { background: rgba(79,156,249,0.25); border-color: #4f9cf9; }
+.opciones li .valor { font-size: 20px; color: rgba(255,255,255,0.55); }
+.panel-pie { margin-top: 14px; font-size: 18px; color: rgba(255,255,255,0.45); text-align: center; }
+
+/* ---------- toast ---------- */
+.toast {
+  position: absolute; left: 50%; bottom: 54px; transform: translateX(-50%);
+  padding: 20px 34px; border-radius: 22px;
+  font-size: 28px; font-weight: 500; color: #fff;
+  background: rgba(12,20,30,0.97);
+  border: 2px solid rgba(79,156,249,0.6);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.8);
+  z-index: 50;
+  opacity: 0; transition: opacity 180ms;
+  white-space: nowrap; max-width: 80%;
+}
+.toast.visible { opacity: 1; }
+
+/* oculto */
+[hidden] { display: none !important; }

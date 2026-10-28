@@ -1,0 +1,52 @@
+[
+  {
+    "file": "netflix.svg",
+    "origen": "Wikimedia Commons",
+    "titulo": "Netflix 2015 logo.svg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
+    "bytes": 1118,
+    "sha256_16": "0c12d5374247e16f",
+    "licencia": "PD-textlogo (logo simple, sin derechos de autor en EE.UU.) / marca registrada de su titular",
+    "uso": "identificación nominativa de la aplicación en un launcher personal"
+  },
+  {
+    "file": "disneyplus.svg",
+    "origen": "Wikimedia Commons",
+    "titulo": "Disney+ logo.svg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg",
+    "bytes": 8255,
+    "sha256_16": "ad0ea07cb6627c26",
+    "licencia": "PD-textlogo (logo simple, sin derechos de autor en EE.UU.) / marca registrada de su titular",
+    "uso": "identificación nominativa de la aplicación en un launcher personal"
+  },
+  {
+    "file": "youtube.svg",
+    "origen": "Wikimedia Commons",
+    "titulo": "YouTube 2017 logo.svg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg",
+    "bytes": 6031,
+    "sha256_16": "54e6d9a4c677120d",
+    "licencia": "PD-textlogo (logo simple, sin derechos de autor en EE.UU.) / marca registrada de su titular",
+    "uso": "identificación nominativa de la aplicación en un launcher personal"
+  },
+  {
+    "origen": "Wikimedia Commons",
+    "titulo": "File:Amazon Prime Video logo (2024).svg",
+    "licencia": "PD-textlogo / marca registrada de Amazon",
+    "uso": "identificación nominativa de la aplicación",
+    "file": "primevideo.svg",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amazon_Prime_Video_logo_(2024).svg",
+    "bytes": 8858,
+    "sha256_16": "4492f403c3ca05f7"
+  },
+  {
+    "origen": "github.com/webosbrew/webos-homebrew-channel (MIT)",
+    "titulo": "assets/icon.svg",
+    "licencia": "MIT (proyecto Homebrew Channel)",
+    "uso": "icono de la propia aplicación",
+    "file": "homebrew.svg",
+    "url": "https://raw.githubusercontent.com/webosbrew/webos-homebrew-channel/main/assets/icon.svg",
+    "bytes": 6361,
+    "sha256_16": "94e1def969eb60b1"
+  }
+]
