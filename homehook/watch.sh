@@ -146,9 +146,6 @@ handle_bar () {
         $BAR_PATTERN) ;;
         *) return ;;
     esac
-    case "$line" in
-        $BAR_ON_LAUNCHER) return ;;
-    esac
     if [ -f "$ALLOW" ]; then
         now="${FAKE_NOW:-$(date +%s)}"
         since=$(cat "$ALLOW" 2>/dev/null); since="${since:-0}"
@@ -158,7 +155,10 @@ handle_bar () {
     [ -f "$LAUNCHER/appinfo.json" ] || return
     open_launcher
     log "the home bar was shown: opened the launcher"
-    start_verify
+    case "$line" in
+        $BAR_ON_LAUNCHER) ;;
+        *) start_verify ;;
+    esac
 }
 
 # Test modes: read reports from standard input (a line "TIME n" sets the clock), or run the check once.

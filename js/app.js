@@ -726,6 +726,51 @@
     }
   }
 
+  /* ---------- puntero (Magic Remote) ---------- */
+  var ultimoPuntero = 0;
+  function alPuntero(e) {
+    var ahora = new Date().getTime();
+    if (ahora - ultimoPuntero < 250) { return; }
+    ultimoPuntero = ahora;
+    var t = e.target;
+    if (!t || typeof t.closest !== 'function') { return; }
+    var card = t.closest('.card');
+    if (card) {
+      var id = card.getAttribute('data-id');
+      var secCard = card.getAttribute('data-seccion');
+      var seccion = secCard === 'dock' ? 'favoritos' : 'apps';
+      if (editable) {
+        var indice = Array.prototype.indexOf.call(card.parentNode.children, card);
+        sel = { appId: id, seccion: seccion, indice: indice };
+        abrirMenuApp();
+      } else {
+        var item = buscarApp(id);
+        if (item) { lanzar(item); }
+      }
+      return;
+    }
+    var pill = t.closest('.pill');
+    if (pill) {
+      var pid = pill.getAttribute('id');
+      if (pid === 'btnInputs') { Foco.focoEn('pills', 0); panelInputs(); }
+      else if (pid === 'btnSettings') { panelAjustes(); }
+      else if (pid === 'btnOrganizar') { entrarEdicion(); }
+      return;
+    }
+    var li = t.closest('#opciones li[data-accion]');
+    if (li) { accionPanel(li.getAttribute('data-accion')); return; }
+    var tab = t.closest('#tabs .tab');
+    if (tab) { cambiarTab(parseInt(tab.getAttribute('data-idx'), 10)); return; }
+    var btn = t.closest('#editbar .btn-acc');
+    if (btn) { accionEdicion(btn.getAttribute('data-acc')); return; }
+    var hero = t.closest('#hero');
+    if (hero) {
+      var hid = hero.getAttribute('data-id');
+      if (hid) { lanzar(buscarApp(hid) || { id: hid, nombre: $('heroTitle').textContent }); }
+      return;
+    }
+  }
+
   /* ---------- teclado ---------- */
   function teclas() {
     doc.addEventListener('keydown', function (e) {
@@ -789,9 +834,8 @@
     });
     global.onCatalogIcons = render;
 
-    $('btnInputs').addEventListener('click', function () { Foco.focoEn('pills', 0); panelInputs(); });
-    $('btnSettings').addEventListener('click', function () { panelAjustes(); });
-    $('btnOrganizar').addEventListener('click', function () { entrarEdicion(); });
+    doc.addEventListener('mousedown', alPuntero);
+    doc.addEventListener('click', alPuntero);
     $('buscarInput').addEventListener('keydown', function (e) {
       if (e.keyCode === 13) {
         e.preventDefault();
@@ -799,10 +843,6 @@
         if (modoBuscador === 'texto') { guardarTextoInicio(q); }
         else if (q.trim().length >= 2) { ejecutarBusqueda(q.trim()); }
       }
-    });
-    var btns = doc.querySelectorAll('#editbar .btn-acc');
-    Array.prototype.forEach.call(btns, function (b) {
-      b.addEventListener('click', function () { accionEdicion(b.getAttribute('data-acc')); });
     });
 
     teclas();
