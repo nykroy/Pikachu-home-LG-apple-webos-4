@@ -95,13 +95,9 @@
   /* ---------- configuración de sistema (una vez): entrada de TV + ocultar logo LG ---------- */
   function configurarSistema() {
     if (!global.Homebrew || !global.Homebrew.hayPuente()) { return; }
-    var ya;
-    try { ya = global.localStorage.getItem('pikachu-setup'); } catch (e) { ya = null; }
-    if (ya === '1') { return; }
     var L = labelSeguro(textoInicio());
     /* Añadir Pikachu Home como entrada de TV + conmutar a ella + ocultar logo LG (con log de verificación) */
-    global.Homebrew.exec("echo '[addDevice]' > /tmp/pikachu-setup.log; SEND=luna-send-pub; command -v luna-send-pub >/dev/null 2>&1 || SEND=luna-send; $SEND -n 1 luna://com.webos.service.eim/addDevice '{\"appId\":\"com.pikachu.apple\",\"pigImage\":\"\",\"mvpdIcon\":\"\",\"label\":\"" + L + "\",\"description\":\"" + L + "\"}' >> /tmp/pikachu-setup.log 2>&1; echo >> /tmp/pikachu-setup.log; echo '[getAllInputStatus]' >> /tmp/pikachu-setup.log; $SEND -n 1 luna://com.webos.service.eim/getAllInputStatus '{}' >> /tmp/pikachu-setup.log 2>&1; echo >> /tmp/pikachu-setup.log; echo '[setDeviceState]' >> /tmp/pikachu-setup.log; $SEND -n 1 luna://com.webos.service.eim/setDeviceState '{\"deviceId\":\"com.pikachu.apple\",\"state\":\"ON\"}' >> /tmp/pikachu-setup.log 2>&1; echo >> /tmp/pikachu-setup.log; echo '[setLogo]' >> /tmp/pikachu-setup.log; luna-send -n 1 -f luna://com.webos.settingsservice/setSystemSettings '{\"category\":\"other\",\"settings\":{\"lgLogoDisplay\":\"off\"}}' >> /tmp/pikachu-setup.log 2>&1", function () {});
-    try { global.localStorage.setItem('pikachu-setup', '1'); } catch (e) {}
+    global.Homebrew.exec("echo '[addDevice]' > /tmp/pikachu-setup.log; SEND=luna-send-pub; command -v luna-send-pub >/dev/null 2>&1 || SEND=luna-send; $SEND -n 1 luna://com.webos.service.eim/addDevice '{\"appId\":\"com.pikachu.apple\",\"pigImage\":\"\",\"mvpdIcon\":\"\",\"label\":\"" + L + "\",\"description\":\"" + L + "\"}' >> /tmp/pikachu-setup.log 2>&1; echo >> /tmp/pikachu-setup.log; echo '[getAllInputStatus]' >> /tmp/pikachu-setup.log; $SEND -n 1 luna://com.webos.service.eim/getAllInputStatus '{}' >> /tmp/pikachu-setup.log 2>&1; echo >> /tmp/pikachu-setup.log; echo '[setLogo]' >> /tmp/pikachu-setup.log; luna-send -n 1 -f luna://com.webos.settingsservice/setSystemSettings '{\"category\":\"other\",\"settings\":{\"lgLogoDisplay\":\"off\"}}' >> /tmp/pikachu-setup.log 2>&1", function () {});
   }
 
   /* ---------- sincronización ---------- */
