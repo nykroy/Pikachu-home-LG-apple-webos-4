@@ -4,7 +4,7 @@
   'use strict';
 
   var SEMILLA = [
-    { id: 'com.webos.app.lgstore', nombre: 'LG Content Store', tipo: 'tienda',
+    { id: 'com.webos.app.discovery', nombre: 'LG Content Store', tipo: 'tienda',
       c1: '#c81d4a', c2: '#7d0d2c', glyph: 'LG', candidato: true },
     { id: 'org.webosbrew.hbchannel', nombre: 'Homebrew Channel', tipo: 'tienda',
       c1: '#2b5cff', c2: '#0b2b8a', glyph: 'HB', candidato: false }

@@ -17,7 +17,8 @@
       nuevas: [],
       visto: {},
       sembrado: false,
-      actualizado: 0
+      actualizado: 0,
+      textoInicio: 'Pikachu Home'
     };
   }
 
@@ -66,6 +67,7 @@
     }
     d.sembrado = o.sembrado === true;
     d.actualizado = typeof o.actualizado === 'number' ? o.actualizado : 0;
+    d.textoInicio = (typeof o.textoInicio === 'string' && o.textoInicio.trim()) ? o.textoInicio.trim().slice(0, 30) : 'Pikachu Home';
     return d;
   }
 
@@ -219,6 +221,14 @@
     return estado();
   }
 
+  function fijarTextoInicio(t) {
+    var v = String(t == null ? '' : t).trim().slice(0, 30);
+    if (!v) { v = 'Pikachu Home'; }
+    obj().textoInicio = v;
+    guardar();
+    return v;
+  }
+
   global.UserPreferences = {
     usarBorrador: usarBorrador, esBorrador: esBorrador,
     VERSION: VERSION,
@@ -241,6 +251,7 @@
     restaurar: restaurar,
     ordenDe: ordenDe,
     moverSeccion: moverSeccion,
+    fijarTextoInicio: fijarTextoInicio,
     marcarNuevas: marcarNuevas, marcarNoDisponibles: marcarNoDisponibles,
     marcarVisto: marcarVisto,
     restaurarDefecto: restaurarDefecto

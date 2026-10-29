@@ -58,8 +58,17 @@
     return false;
   }
 
+  /* Asigna un icono real (data URI) a una app instalada. Devuelve true si cambió. */
+  function marcarIcono(id, url) {
+    var i;
+    for (i = 0; i < apps.length; i++) {
+      if (apps[i].id === id && apps[i].iconUrl !== url) { apps[i].iconUrl = url; return true; }
+    }
+    return false;
+  }
+
   global.InstalledApps = {
-    marcarDisponible: marcarDisponible,
+    marcarDisponible: marcarDisponible, marcarIcono: marcarIcono,
     setAll: setAll, todos: todos, visibles: visibles, buscar: buscar, existe: existe, ids: ids,
     marca: marca, diferencias: diferencias
   };

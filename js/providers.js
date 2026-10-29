@@ -78,14 +78,38 @@
     return aplicar(global.Catalogo.semilla(), 'local', false, error, null);
   }
 
-  /* Sincronización: SSAP si hay credencial; si no o si falla → caché → local. */
+  /* Sincronización: Homebrew (root, listado real) → SSAP → caché → local. */
   function sincronizar(cb) {
+    var cachePrevio = global.CatalogCache.leer();
+    if (global.Homebrew && global.Homebrew.hayPuente()) {
+      global.Homebrew.listar(function (ok, apps, err) {
+        if (!ok || !apps.length) { sincronizarSsap(cb, cachePrevio); return; }
+        global.Homebrew.listarEntradas(function (okE, entradas) {
+          var todos = apps.slice();
+          if (okE && entradas) { todos = todos.concat(entradas); }
+          aplicar(todos, 'homebrew', true, '', null, cachePrevio);
+          global.CatalogCache.guardar(todos);
+          global.Homebrew.cargarIconos(apps, function (icons) {
+            var i, cambio = false;
+            for (i = 0; i < apps.length; i++) {
+              if (icons[apps[i].id] && global.InstalledApps.marcarIcono(apps[i].id, icons[apps[i].id])) { cambio = true; }
+            }
+            if (cambio && global.onCatalogIcons) { global.onCatalogIcons(); }
+          });
+          if (cb) { cb(ultimo); }
+        });
+      });
+      return;
+    }
+    sincronizarSsap(cb, cachePrevio);
+  }
+
+  function sincronizarSsap(cb, cachePrevio) {
     if (!global.SondaSsap || !global.SondaSsap.hayClave()) {
       var r = desdeCache('sin credencial');
       if (cb) { cb(r); }
       return;
     }
-    var cachePrevio = global.CatalogCache.leer();
     global.SondaSsap.consultar(function (ok, lps, err) {
       var res;
       if (ok && lps) {

@@ -22,11 +22,12 @@
         <span class="sep">·</span>
         <span id="fecha">—</span>
       </div>
+      <div class="weather-row" id="weather" hidden></div>
     </div>
     <div class="pills" id="pills">
-      <button class="pill" id="btnInputs" type="button">▣ Inputs</button>
-      <button class="pill" id="btnSettings" type="button">⚙ Ajustes</button>
-      <button class="pill" id="btnOrganizar" type="button">✎ Organizar</button>
+      <button class="pill" id="btnInputs" type="button">Inputs</button>
+      <button class="pill" id="btnSettings" type="button">Ajustes</button>
+      <button class="pill" id="btnOrganizar" type="button">Organizar</button>
     </div>
   </header>
 
@@ -42,30 +43,29 @@
 
   <!-- dock (favoritos) + grid (apps y entradas) -->
   <div id="viewport">
-    <div id="dock" class="dock"></div>
     <div id="grid" class="grid"></div>
+    <div id="dock" class="dock"></div>
   </div>
 
   <!-- barra de organización (transaccional) -->
   <div class="editbar" id="editbar" hidden>
-    <span class="editbar-txt" id="editbarTxt">Moviendo</span>
-    <button class="btn-acc" data-acc="mover-izq" type="button">◀ Mover</button>
-    <button class="btn-acc" data-acc="mover-der" type="button">Mover ▶</button>
-    <button class="btn-acc" data-acc="favorito" type="button">★ Favorito</button>
-    <button class="btn-acc" data-acc="ocultar" type="button">Ocultar</button>
+    <span class="editbar-txt" id="editbarTxt">Organizar</span>
     <button class="btn-acc" data-acc="ocultas" type="button">Ocultas</button>
     <button class="btn-acc" data-acc="restaurar" type="button">Restaurar</button>
     <button class="btn-acc ok" data-acc="listo" type="button">✓ Listo</button>
     <button class="btn-acc" data-acc="cancelar" type="button">✗ Cancelar</button>
   </div>
 
-  <!-- panel de ajustes -->
+  <!-- panel de ajustes (pestañas) -->
   <div class="panel" id="panel" hidden>
     <div class="panel-card">
-      <h3 id="panelTitulo">Ajustes</h3>
-      <button class="btn-panel-cerrar" id="btnSalir" type="button">Cerrar ✕</button>
+      <div class="tabs" id="tabs"></div>
+      <div class="buscador" id="buscador" hidden>
+        <input id="buscarInput" type="text" placeholder="Escribe el nombre de una ciudad…" maxlength="60" autocomplete="off">
+        <div class="buscar-pie">Escribe y pulsa Intro en el teclado para buscar</div>
+      </div>
       <ul class="opciones" id="opciones"></ul>
-      <p class="panel-pie">«Cerrar» para volver</p>
+      <p class="panel-pie">← → pestaña · ↑ ↓ opción · OK elige · BACK cierra</p>
     </div>
   </div>
 
@@ -75,6 +75,7 @@
   <script src="js/installed.js"></script>
   <script src="js/cache.js"></script>
   <script src="js/ssap.js"></script>
+  <script src="js/homebrew.js"></script>
   <script src="js/catalog.js"></script>
   <script src="js/prefs.js"></script>
   <script src="js/providers.js"></script>
@@ -85,6 +86,8 @@
   <script src="js/focus.js"></script>
   <script src="js/txn.js"></script>
   <script src="js/ui.js"></script>
+  <script src="js/backgrounds.js"></script>
+  <script src="js/weather.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

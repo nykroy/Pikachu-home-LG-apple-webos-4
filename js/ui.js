@@ -12,8 +12,16 @@
 
     var icono = doc.createElement('div');
     icono.className = 'icono';
-    icono.textContent = item.glyph || (item.nombre ? item.nombre.charAt(0).toUpperCase() : '?');
-    if (item.c1) { icono.style.color = item.c1; }
+    if (item.iconUrl) {
+      var img = doc.createElement('img');
+      img.className = 'icono-img';
+      img.src = item.iconUrl;
+      img.alt = '';
+      icono.appendChild(img);
+    } else {
+      icono.textContent = item.glyph || (item.nombre ? item.nombre.charAt(0).toUpperCase() : '?');
+      if (item.c1) { icono.style.color = item.c1; }
+    }
     card.appendChild(icono);
 
     var nombre = doc.createElement('div');

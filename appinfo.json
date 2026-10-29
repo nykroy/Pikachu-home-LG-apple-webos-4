@@ -13,5 +13,7 @@
   "resolution": "1920x1080",
   "disableBackHistoryAPI": true,
   "transparent": false,
-  "requiredMemory": 20
+  "splashBackground": "splash.png",
+  "requiredMemory": 20,
+  "supportGIP": true
 }
